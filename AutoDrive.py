@@ -28,10 +28,9 @@ front_sensor = DistanceSensor(7, 8)
 back_sensor = DistanceSensor(24, 25)
 
 #Intilize Vars
-FrontForward = 0.0
-FrontRigth = 0.0
-FrontLeft = 0.0
-RearForward = 0.0
-RearLeft = 0.0
-RearRight = 0.0
+FrontDistance = [0.0, 0.0, 0.0]
+RearDistance = [0.0, 0.0, 0.0]
+
+
+
 
