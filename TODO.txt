@@ -1,0 +1,6 @@
+Set up some sort of automation
+Look into Computer vision 
+  Open CV vs Tenserflow?
+  
+
+  
