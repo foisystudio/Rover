@@ -88,7 +88,19 @@ def Look():
     sleep(1)
     f_cam_servo.mid()
     
-FrontDistance = Front_Sornar()
-RearDistance = Rear_Sonar()
-Look()
-  
+while True:    
+    FrontDistance = Front_Sornar()
+    RearDistance = Rear_Sonar()
+    Look()
+    if FrontDistance[0] > FrontDistance [1] and FrontDistance[0] > FrontDistance [2]:
+        robot.forward()
+        sleep(1)
+    elif FrontDistance[1] > FrontDistance[2]:
+        robot.right()
+        sleep(1)
+    elif FrontDistance[2] > FrontDistance[1]:
+        robot.left()
+        sleep(1)
+    else:
+        robot.backward()
+        sleep(1)
