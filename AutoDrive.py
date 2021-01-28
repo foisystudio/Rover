@@ -32,5 +32,63 @@ FrontDistance = [0.0, 0.0, 0.0]
 RearDistance = [0.0, 0.0, 0.0]
 
 
+def Front_Sornar():
+    f_sonar_servo.mid()
+    print("front forward")
+    sleep(0.5)
+    print('Distance to nearest object is', front_sensor.distance, 'm')
+    FrontDistance[0] = front_sensor.distance
+    f_sonar_servo.min()
+    print("front right")
+    sleep(0.5)
+    print('Distance to nearest object is', front_sensor.distance, 'm')
+    FrontDistance[1] = front_sensor.distance
+    f_sonar_servo.mid()
+    print("front forward")
+    sleep(0.5)
+    print('Distance to nearest object is', front_sensor.distance, 'm')
+    f_sonar_servo.max()
+    print("front left")
+    sleep(0.5)
+    print('Distance to nearest object is', front_sensor.distance, 'm')
+    FrontDistance[2] = front_sensor.distance
+    f_sonar_servo.mid()
+    return FrontDistance
 
+def Rear_Sonar():
+    back_servo.mid()
+    print("back forward")
+    sleep(0.5)
+    print('Distance to nearest object is', back_sensor.distance, 'm')
+    RearDistance[0] = back_sensor.distance
+    back_servo.min()
+    print("back right")
+    sleep(0.5)
+    print('Distance to nearest object is', back_sensor.distance, 'm')
+    RearDistance[1] = back_sensor.distance
+    back_servo.mid()
+    print("back forward")
+    sleep(0.5)
+    print('Distance to nearest object is', back_sensor.distance, 'm')
+    back_servo.max()
+    print("back left")
+    sleep(0.5)
+    print('Distance to nearest object is', back_sensor.distance, 'm')
+    RearDistance[0] = back_sensor.distance
+    back_servo.mid()
+    return RearDistance
 
+def Look():
+    f_cam_servo.mid()
+    f_cam_servo.min()
+    sleep(1)
+    f_cam_servo.mid()
+    sleep(1)
+    f_cam_servo.max()
+    sleep(1)
+    f_cam_servo.mid()
+    
+FrontDistance = Front_Sornar()
+RearDistance = Rear_Sonar()
+Look()
+  
