@@ -1,4 +1,4 @@
-#Import libs
+  #Import libs
 from gpiozero import Robot
 from gpiozero import DistanceSensor
 from gpiozero import Servo
@@ -28,55 +28,76 @@ front_sensor = DistanceSensor(7, 8)
 back_sensor = DistanceSensor(24, 25)
 
 #Intilize Vars
-FrontDistance = [0.0, 0.0, 0.0]
-RearDistance = [0.0, 0.0, 0.0]
+FrontDistance = [0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0]
+RearDistance = [0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0] 
 
 
 def Front_Sornar():
-    f_sonar_servo.mid()
-    print("front forward")
-    sleep(0.5)
-    print('Distance to nearest object is', front_sensor.distance, 'm')
+    f_sonar_servo.value = -1
+    sleep(0.2)
     FrontDistance[0] = front_sensor.distance
-    f_sonar_servo.min()
-    print("front right")
-    sleep(0.5)
-    print('Distance to nearest object is', front_sensor.distance, 'm')
+    print('0 deg = ', front_sensor.distance)
+    f_sonar_servo.value = -0.75
+    sleep(0.2)
     FrontDistance[1] = front_sensor.distance
-    f_sonar_servo.mid()
-    print("front forward")
-    sleep(0.5)
-    print('Distance to nearest object is', front_sensor.distance, 'm')
-    f_sonar_servo.max()
-    print("front left")
-    sleep(0.5)
-    print('Distance to nearest object is', front_sensor.distance, 'm')
+    print('22.5 deg = ', front_sensor.distance)
+    f_sonar_servo.value = -0.5
+    sleep(0.2)
     FrontDistance[2] = front_sensor.distance
-    f_sonar_servo.mid()
-    return FrontDistance
+    print('45 deg = ', front_sensor.distance)
+    f_sonar_servo.value = -0.25
+    sleep(0.2)
+    FrontDistance[3] = front_sensor.distance
+    print('67.5 deg = ', front_sensor.distance)
+    f_sonar_servo.value = 0
+    sleep(0.2)
+    FrontDistance[4] = front_sensor.distance
+    print('90 deg = ', front_sensor.distance)
+    f_sonar_servo.value = 0.25
+    sleep(0.2)
+    FrontDistance[5] = front_sensor.distance
+    print('112.5 deg = ', front_sensor.distance)
+    f_sonar_servo.value = 0.5
+    sleep(0.2)
+    FrontDistance[6] = front_sensor.distance
+    print('135 deg = ', front_sensor.distance)
+    f_sonar_servo.value = 0.75
+    sleep(0.2)
+    FrontDistance[7] = front_sensor.distance
+    print('157.5 deg = ', front_sensor.distance)
+    f_sonar_servo.value = 1
+    sleep(0.2)
+    FrontDistance[8] = front_sensor.distance
+    print('180 deg = ', front_sensor.distance)
 
 def Rear_Sonar():
-    back_servo.mid()
-    print("back forward")
-    sleep(0.5)
-    print('Distance to nearest object is', back_sensor.distance, 'm')
+    back_servo.value = -1
+    sleep(0.2)
     RearDistance[0] = back_sensor.distance
-    back_servo.min()
-    print("back right")
-    sleep(0.5)
-    print('Distance to nearest object is', back_sensor.distance, 'm')
-    RearDistance[1] = back_sensor.distance
-    back_servo.mid()
-    print("back forward")
-    sleep(0.5)
-    print('Distance to nearest object is', back_sensor.distance, 'm')
-    back_servo.max()
-    print("back left")
-    sleep(0.5)
-    print('Distance to nearest object is', back_sensor.distance, 'm')
+    back_servo.value = -0.75
+    sleep(0.2)
     RearDistance[0] = back_sensor.distance
-    back_servo.mid()
-    return RearDistance
+    back_servo.value = -0.5
+    sleep(0.2)
+    RearDistance[0] = back_sensor.distance
+    back_servo.value = -0.25
+    sleep(0.2)
+    RearDistance[0] = back_sensor.distance
+    back_servo.value = 0
+    sleep(0.2)
+    RearDistance[0] = back_sensor.distance
+    back_servo.value = 0.25
+    sleep(0.2)
+    RearDistance[0] = back_sensor.distance
+    back_servo.value = 0.5
+    sleep(0.2)
+    RearDistance[0] = back_sensor.distance
+    back_servo.value = 0.75
+    sleep(0.2)
+    RearDistance[0] = back_sensor.distance
+    back_servo.value = 1
+    sleep(0.2)
+    RearDistance[0] = back_sensor.distance
 
 def Look():
     f_cam_servo.mid()
@@ -87,20 +108,60 @@ def Look():
     f_cam_servo.max()
     sleep(1)
     f_cam_servo.mid()
+
+def Check_direction():
+    if FrontDistance[3] > 0.25 and FrontDistance[4] > 0.25 and FrontDistance[5] > 0.25:
+        print('67.5 deg is > 0.25m and 90 deg > 0.25m and 112.5 deg > 0.25m')
+        print('so go forward') 
+        robot.forward()
+        sleep(0.5)
+        robot.stop()
+    elif FrontDistance[3] < 0.25 or FrontDistance[4] < 0.25 or FrontDistance[5] < 0.25:
+        print('67.5 deg is < 0.25m and 90 deg < 0.25m and 112.5 deg < 0.25m')
+        print('Check which way to go') 
+        if (FrontDistance[0] and FrontDistance[1]) > (FrontDistance[7] and FrontDistance[8]):
+            print('0 deg and 22.5 deg > 157.5 deg and 180 deg')
+            print('turn left')
+            robot.left()
+            sleep(0.5)
+            robot.stop()
+        if  (FrontDistance[0] and FrontDistance[1]) < (FrontDistance[7] and FrontDistance[8]):
+            print('0 deg and 22.5 deg < 157.5 deg and 180 deg')
+            print('go right')
+            robot.right()
+            sleep(0.5)
+            robot.stop()
+    else:
+        print('no critera met go backwards')
+        robot.backward()
+        sleep(0.5)
+        robot.stop()
     
 while True:    
-    FrontDistance = Front_Sornar()
-    RearDistance = Rear_Sonar()
-    Look()
-    if FrontDistance[0] > FrontDistance [1] and FrontDistance[0] > FrontDistance [2]:
-        robot.forward()
-        sleep(1)
-    elif FrontDistance[1] > FrontDistance[2]:
-        robot.right()
-        sleep(1)
-    elif FrontDistance[2] > FrontDistance[1]:
-        robot.left()
-        sleep(1)
-    else:
-        robot.backward()
-        sleep(1)
+    Front_Sornar()
+    Rear_Sonar()
+    Check_direction()
+
+#    FrontDistance = Front_Sornar()
+#    RearDistance = Rear_Sonar()
+#    Look()
+#    if FrontDistance[0] > 0.2:
+#        robot.forward()
+#        sleep(0.5)
+#        robot.stop()
+#    elif FrontDistance[0] > FrontDistance [1] and FrontDistance[0] > FrontDistance [2]:
+#        robot.forward()
+#        sleep(0.2)
+#        robot.stop()
+#    elif FrontDistance[1] > FrontDistance[2] and FrontDistance[1] > 0.2:
+#        robot.right()
+#        sleep(1)
+#        robot.stop()
+#    elif FrontDistance[2] > FrontDistance[1] and FrontDistance[2] > 0.2:
+#        robot.left()
+#        sleep(1)
+#        robot.stop()
+#    else:
+#        robot.backward()
+#        sleep(0.2)
+#        robot.stop()
