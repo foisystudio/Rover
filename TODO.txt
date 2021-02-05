@@ -1,0 +1,9 @@
+Set up some sort of automation
+Look into Computer vision 
+  Open CV vs Tenserflow?
+Figure out sonar
+  180deg divided by 6 reading points for both front and back
+  
+  
+
+  

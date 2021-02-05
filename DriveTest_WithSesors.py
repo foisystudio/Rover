@@ -9,7 +9,6 @@ myCorrection=0.5
 maxPW=(2.0+myCorrection)/1000
 minPW=(1.0-myCorrection)/1000
 
-
 myGPIO1=15 #back servo
 myGPIO2=18 #front sonar servo
 myGPIO3=23 #front camera servo
@@ -33,13 +32,7 @@ distance_back = 0.02
 distance_front = front_sensor.distance
 distance_back = back_sensor.distance
 
-
-while True:
-
-
-    
-
-    #Check Barrings front
+def Front_Sornar():
     f_sonar_servo.mid()
     print("front forward")
     sleep(0.5)
@@ -58,8 +51,8 @@ while True:
     print('Distance to nearest object is', front_sensor.distance, 'm')
     f_sonar_servo.mid()
     distance_front = front_sensor.distance
-    
-    #Check Barrings back
+
+def Rear_Sonar():
     back_servo.mid()
     print("back forward")
     sleep(0.5)
@@ -79,6 +72,21 @@ while True:
     back_servo.mid()
     distance_back = back_sensor.distance
 
+def Look():
+    f_cam_servo.mid()
+    f_cam_servo.min()
+    sleep(1)
+    f_cam_servo.mid()
+    sleep(1)
+    f_cam_servo.max()
+    sleep(1)
+    f_cam_servo.mid()
+
+while True:
+    #Check Barrings front
+    Front_Sornar()
+    #Check Barrings back
+    Rear_Sonar()
     #ask
     userInput = input("which direction (F/B/R/L/look):\n")
     #if user enters exit exit program
@@ -120,17 +128,6 @@ while True:
         robot.stop()
     #if user wants to look
     if userInput == "look":
-        userInput2 = input("which direction (F/R/L:\n")
-        if userInput2 == "F":
-            f_cam_servo.mid()
-        if userInput2 == "R":
-            f_cam_servo.min()
-            sleep(1)
-            f_cam_servo.mid()
-        if userInput2 == "L":
-            f_cam_servo.max()
-            sleep(1)
-            f_cam_servo.mid()
-
+        Look()
             
-            
+                        
