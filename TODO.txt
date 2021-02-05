@@ -2,8 +2,10 @@ Set up some sort of automation
 Look into Computer vision 
   Open CV vs Tenserflow?
 Figure out sonar
-  180deg divided by 6 reading points for both front and back
+  180deg divided by 8 reading points for both front and back
   
+Need a better way of doing object detection with the sonar, still hits things. 
+
   
 
   
