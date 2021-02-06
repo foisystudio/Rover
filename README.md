@@ -4,14 +4,23 @@ A raspberry pi rover
 My first attempt at building anything robotic. The Ultamate goal of this to eventually build a "Beer Excreeting Efficent Robot" AKA "BEER bot" :)
 
 So far I am just dabiling in basic robotics. The build consists of the following:
+
 Raspberry PI 3b
+
 16GB micro sd card
+
 2 x Sonar <ADD PART #>
+
 Pi Camera
+
 4 x Wheels - 4 x 3-6V DC motors - Plastic Chasis --- All part of a kit off of Amazon
+
 Motor Controller <ADD PART#>
+
 Bread Board
+
 4AA battery holder
+
 USB Power Bank (2 outputs)
 
 
