@@ -142,6 +142,7 @@ def Check_direction():
     
 while True:    
     Front_Sornar()
+    Look()
     Rear_Sonar()
     Check_direction()
 
