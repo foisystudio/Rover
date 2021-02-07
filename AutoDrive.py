@@ -1,4 +1,4 @@
-  #Import libs
+#Import libs
 from gpiozero import Robot
 from gpiozero import DistanceSensor
 from gpiozero import Servo
@@ -109,6 +109,9 @@ def Look():
     sleep(1)
     f_cam_servo.mid()
 
+    
+### NEED WORK ### 
+### Kinda works but not well :( ###
 def Check_direction():
     if FrontDistance[3] > 0.25 and FrontDistance[4] > 0.25 and FrontDistance[5] > 0.25:
         print('67.5 deg is > 0.25m and 90 deg > 0.25m and 112.5 deg > 0.25m')
@@ -142,26 +145,3 @@ while True:
     Rear_Sonar()
     Check_direction()
 
-#    FrontDistance = Front_Sornar()
-#    RearDistance = Rear_Sonar()
-#    Look()
-#    if FrontDistance[0] > 0.2:
-#        robot.forward()
-#        sleep(0.5)
-#        robot.stop()
-#    elif FrontDistance[0] > FrontDistance [1] and FrontDistance[0] > FrontDistance [2]:
-#        robot.forward()
-#        sleep(0.2)
-#        robot.stop()
-#    elif FrontDistance[1] > FrontDistance[2] and FrontDistance[1] > 0.2:
-#        robot.right()
-#        sleep(1)
-#        robot.stop()
-#    elif FrontDistance[2] > FrontDistance[1] and FrontDistance[2] > 0.2:
-#        robot.left()
-#        sleep(1)
-#        robot.stop()
-#    else:
-#        robot.backward()
-#        sleep(0.2)
-#        robot.stop()
