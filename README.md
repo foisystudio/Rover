@@ -13,6 +13,8 @@ Raspberry PI 3b
 
 2 x Sonar <ADD PART #>
 
+3 x Servo 
+
 Pi Camera
 
 4 x Wheels - 4 x 3-6V DC motors - Plastic Chasis --- All part of a kit off of Amazon
@@ -24,6 +26,7 @@ Bread Board
 4AA battery holder
 
 USB Power Bank 20100mAh(2 outputs @ 2.4A)
+
 
 
 
