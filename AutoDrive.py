@@ -113,27 +113,26 @@ def Look():
 ### NEED WORK ### 
 ### Kinda works but not well :( ###
 def Check_direction():
-    if FrontDistance[3] > 0.25 and FrontDistance[4] > 0.25 and FrontDistance[5] > 0.25:
-        print('67.5 deg is > 0.25m and 90 deg > 0.25m and 112.5 deg > 0.25m')
-        print('so go forward') 
-        robot.forward()
-        sleep(0.5)
-        robot.stop()
-    elif FrontDistance[3] < 0.25 or FrontDistance[4] < 0.25 or FrontDistance[5] < 0.25:
+   if FrontDistance[3] < 0.25 or FrontDistance[4] < 0.25 or FrontDistance[5] < 0.25:
         print('67.5 deg is < 0.25m and 90 deg < 0.25m and 112.5 deg < 0.25m')
-        print('Check which way to go') 
+        print('Check which way to go')
+        robot.bacward()
+        sleep(0.2) 
         if (FrontDistance[0] and FrontDistance[1]) > (FrontDistance[7] and FrontDistance[8]):
             print('0 deg and 22.5 deg > 157.5 deg and 180 deg')
             print('turn left')
             robot.left()
-            sleep(0.5)
+            sleep(0.8)
             robot.stop()
         if  (FrontDistance[0] and FrontDistance[1]) < (FrontDistance[7] and FrontDistance[8]):
             print('0 deg and 22.5 deg < 157.5 deg and 180 deg')
             print('go right')
             robot.right()
-            sleep(0.5)
+            sleep(0.8)
             robot.stop()
+    elif FrontDistance[3] > 0.25 or FrontDistance[4] > 0.25 or FrontDistance[5] > 0.25:
+        robot.forward()
+        sleep(0.5)
     else:
         print('no critera met go backwards')
         robot.backward()
